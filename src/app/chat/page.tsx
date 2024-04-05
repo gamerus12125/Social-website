@@ -1,32 +1,8 @@
 "use client";
 import { ChatSection } from "@/components/ChatSection/ChatSection";
 import { Chats } from "@/components/Chats/Chats";
-import { Chat } from "@/lib/types";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
-const initChat: Chat[] = [
-  {
-    id: 1,
-    messages: [
-      {
-        id: 1,
-        text: "test",
-        author: "test",
-        author_id: 1,
-        chat_id: 1,
-      },
-      {
-        id: 2,
-        text: "test",
-        author: "test",
-        author_id: 2,
-        chat_id: 1,
-      },
-    ],
-    icon: "https://yastatic.net/naydex/yandex-search/1BYU6E296/a7681akvGS/-xhZcuE2OOsOAvILTi4ND9maRHKqs-bnNi19vvmprdIrYLu3oeHGJJOGwm5mIr9CeGUyoD_3X1aiVFl0-NvqlugdHT6idyK3WUDvRwIpBAvG0Vk6qvT6tT06ZujxvaSEdWG-2JuZ4levrKgWElzBD31tMPcmvB9FyTw",
-  },
-];
 
 const chatPage = () => {
   const [chat, setChat] = useState();
@@ -35,11 +11,17 @@ const chatPage = () => {
     axios.get("/api/chats").then((res) => setChats(res.data));
   }, []);
 
+  const createNewChat = () => {
+    axios
+      .post("/api/chats")
+      .then((res) => axios.get("/api/chats").then((res) => setChats(res.data)));
+  };
+
   return (
-    <main className="flex px-5">
+    <main className="w-full sm:flex sm:px-5">
       {chats ? (
         <>
-          <Chats chats={chats} setChat={setChat} />
+          <Chats chats={chats} setChat={setChat} createChat={createNewChat} />
           {chat ? <ChatSection chat={chat} /> : ""}
         </>
       ) : (

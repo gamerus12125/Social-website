@@ -1,18 +1,15 @@
-import { useSession } from "@/lib/hooks/useSession";
 import { Chat } from "@/lib/types";
-import axios from "axios";
+import styles from "./Chats.module.css"
 
 
-export const Chats = ({chats, setChat}: {"chats": Chat[], "setChat": Function}) => {
-  const session = useSession();
+export const Chats = ({chats, setChat, createChat}: {"chats": Chat[], "setChat": Function, "createChat": Function}) => {
   return (
-    <div className="flex flex-col border-4 border-indigo-800 w-fit">
-      <ul>
+      <ul className="p-1 border-4 border-indigo-800 flex sm:flex-col gap-1 overflow-x-scroll sm:overflow-y-scroll sm:overflow-x-hidden">
         {chats.map((chat) => (
           <li key={chat.id}>
-            <button type="button" onClick={() => setChat(chat)}>
+            <button type="button" onClick={() => setChat(chat)} className="w-14 h-14">
               <img
-                className="rounded-full w-14 h-14"
+                className={`rounded-full ${styles.img}`}
                 src={chat.icon}
                 alt={"icon"}
               />
@@ -20,15 +17,14 @@ export const Chats = ({chats, setChat}: {"chats": Chat[], "setChat": Function}) 
           </li>
         ))}
         <li>
-          <button type="button" onClick={() => axios.post("/api/chats")}>
+          <button type="button" onClick={() => createChat()} className="w-14 h-14">
           <img
-                className="rounded-full w-14 h-14"
+                className={`rounded-full ${styles.img}`}
                 src="add_button.svg"
                 alt={"add"}
               />
           </button>
           </li>
       </ul>
-    </div>
   );
 };

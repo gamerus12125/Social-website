@@ -22,6 +22,5 @@ export type Message = {
 
 export type Chat = {
   id: number
-  messages: Message[]
   icon: string
 }

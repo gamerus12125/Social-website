@@ -1,6 +1,6 @@
 from flask import Flask, request, make_response, jsonify, redirect
 from flask_restful import Api, abort
-from data import users_resourse, posts_resource, messages_resource, chats_resource
+from data import users_resourse, posts_resource, messages_resource, chats_resource, participants_resource
 from data import db_session
 from data.users import User
 from tools.misc import generate_session_token
@@ -14,6 +14,9 @@ api.add_resource(posts_resource.PostResource, "/api/posts/<int:post_id>")
 api.add_resource(posts_resource.PostListResource, "/api/posts")
 api.add_resource(messages_resource.MessagesListResource, "/api/messages")
 api.add_resource(chats_resource.ChatsListResource, "/api/chats")
+api.add_resource(chats_resource.ChatsResource, "/api/chats/<int:chat_id>")
+api.add_resource(participants_resource.ParticipantListResource, "/api/participants")
+
 
 @app.route("/api/login", methods=["POST"])
 def login():
@@ -23,10 +26,11 @@ def login():
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.email == form["email"]).first()
     if not (user and user.check_password(form["password"])):
-       return jsonify({"message": "Incorrect email or password"}), 400
+        return jsonify({"message": "Incorrect email or password"}), 400
     res = make_response({"message": "success"}, 200)
     res.set_cookie("session", generate_session_token(user))
     return res
+
 
 @app.route("/api/logout")
 def logout():
@@ -38,6 +42,7 @@ def logout():
 def main():
     db_session.global_init("db/blogs.db")
     app.run(port=5000, host='127.0.0.1')
+
 
 if __name__ == '__main__':
     main()

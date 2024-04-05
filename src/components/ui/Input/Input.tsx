@@ -4,12 +4,16 @@ const Input = ({
   type,
   id,
   name,
-  required
+  required,
+  placeholder,
+  onChange
 }: {
   type: HTMLInputTypeAttribute;
   id: string;
   name: string;
-  required?: boolean
+  required?: boolean;
+  placeholder?:string;
+  onChange?: Function
 }) => {
   return (
     <input
@@ -18,6 +22,8 @@ const Input = ({
       id={id}
       name={name}
       required={required}
+      placeholder={placeholder}
+      onChange={(e) => onChange ? onChange(e.target.value) : ""}
     />
   );
 };
