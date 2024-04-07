@@ -1,9 +1,0 @@
-.chat {
-  height: 70vh;
-}
-
-@media (min-width: 640px) {
-  .chat {
-    height: 100vh;
-  }
-}
