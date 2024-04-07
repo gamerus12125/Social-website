@@ -1,0 +1,12 @@
+.ChatSection_chat__cjqSG {
+  height: 70vh;
+}
+@media (min-width: 640px) {
+  .ChatSection_chat__cjqSG {
+    height: 100vh;
+  }
+}
+.Chats_img__41OuW {
+  width: 100%;
+  height: 100%;
+}
