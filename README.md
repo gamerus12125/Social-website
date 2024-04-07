@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Social Site
 
-## Getting Started
+## Установка
 
-First, run the development server:
+1. Python 3
+2. Установить зависимости из requirements.txt
+3. Запустить файл main.py
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Сайт по-умолчанию работает на порте 5000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## О чём этот проект
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Social Site это веб приложение для общения. Оно предоставляет возможность регистрировать аккаунты, сохраняющиеся в базе данных. После входа в аккаунт сессия сохраняется в течение 1 недели.
 
-## Learn More
+После входа в аккаунт появляется возможность оставлять посты на соответствующей странице, а также создавать чаты. В чат можно добавить любого человека зная его id, который находится во вкладки профиля каждого зарегестрированного пользователя.
 
-To learn more about Next.js, take a look at the following resources:
+Приложения адаптированно для любых видов устройств.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Структура приложения
+Для создания backend веб приложения использовался фреймворк python Flask.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Были использованы следующие технологии:
+1. <strong>Bootstrap</strong>
+2. Шаблоны
+3. ORM модели
+4. sqlite база данных
+5.  API: Rest
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Для разработки frontend был использован фреймворк javascript Next.js.
